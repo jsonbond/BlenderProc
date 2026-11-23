@@ -7,11 +7,11 @@ Development, CI, and local use of this repository install Python dependencies fr
 - `setup.py` stays the packaging manifest. Install this checkout without resolving those unpinned requirements:
 
 ```bash
-python -m pip install --require-hashes --no-build-isolation -r requirements.lock
+python blenderproc/scripts/install_from_lock.py
 python -m pip install -e . --no-deps --no-build-isolation
 ```
 
-`--no-build-isolation` keeps the install from fetching unpinned build tools. Do not `pip install --upgrade pip` unless that pip version is hash-pinned.
+`progressbar` is sdist-only. `--no-build-isolation` keeps the install from fetching unpinned build tools, and pip builds that sdist before it installs the rest of the lock. `install_from_lock.py` first installs the setuptools wheel already hash-pinned in `requirements.lock` (`--require-hashes --only-binary=:all:`), then installs the lock with `--require-hashes --no-build-isolation`. Do not `pip install --upgrade pip` unless that pip version is hash-pinned.
 
 To update the lock, review the diff, then recompile:
 

@@ -33,7 +33,7 @@ jobs:
           tar -xJf "$dest/blender-4.2.1-linux-x64.tar.xz" -C "$dest"
           "$dest/blender-4.2.1-linux-x64/blender" --version
       - name: Install from the hashed lock
-        run: python -m pip install --require-hashes --no-build-isolation -r requirements.lock
+        run: python blenderproc/scripts/install_from_lock.py
       - name: Install this project without unpinned dependencies
         run: python -m pip install -e . --no-deps --no-build-isolation
       - name: Fail if the lock is out of sync

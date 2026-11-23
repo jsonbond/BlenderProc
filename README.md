@@ -30,7 +30,7 @@ Development, CI, and local installs use the hashed lock only (`requirements.lock
 ```bash
 git clone https://github.com/DLR-RM/BlenderProc
 cd BlenderProc
-python -m pip install --require-hashes --no-build-isolation -r requirements.lock
+python blenderproc/scripts/install_from_lock.py
 python -m pip install -e . --no-deps --no-build-isolation
 ```
 
