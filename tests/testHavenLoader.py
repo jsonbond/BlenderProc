@@ -6,6 +6,9 @@ import bpy
 
 # Currently ignoring these textures because they are not downloaded correctly.
 # After issue #456 is fixed, these should be included again.
+# The full Poly Haven library is multiple gigabytes, and no test loads an HDRI.
+# blenderproc/scripts/fetch_test_assets.py pins terrain_red_01, the one texture
+# this module names. Ignored names are skipped only when they are present.
 textures_to_ignore = [
     "book_pattern",
     "church_bricks_02",
@@ -23,16 +26,16 @@ class UnitTestCheckHavenLoader(unittest.TestCase):
         haven_textures_folder = os.path.join(test_path_manager.haven, "textures")
         texture_names = os.listdir(haven_textures_folder)
         texture_names.sort()
+        texture_names = [name for name in texture_names if name not in textures_to_ignore]
+        self.assertIn("terrain_red_01", texture_names)
 
         successes = 0
         for texture_name in texture_names:
-            if texture_name in textures_to_ignore:
-                continue
             bproc.api.loader.load_haven_mat(haven_textures_folder, [texture_name])
             if texture_name in bpy.data.materials:
                 successes += 1
 
-        total = len(texture_names) - len(textures_to_ignore)
+        total = len(texture_names)
 
         assert_message = f"Loaded {successes}/{total} Haven textures succesfully."
         self.assertEqual(successes, total, assert_message)

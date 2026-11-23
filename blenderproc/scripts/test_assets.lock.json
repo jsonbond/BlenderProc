@@ -1,0 +1,53 @@
+{
+  "why": "The unit tests name three ambientCG materials (Metal001, Fabric004, Wood039) and one Poly Haven texture (terrain_red_01). No test loads an HDRI. The full ambientCG catalog and the full Poly Haven texture, HDRI, and model libraries are multiple gigabytes, so only this CC0 subset is fetched. CCMaterialLoader looks for a 2K-JPG color map, so the ambientCG archives are the official 2K-JPG zips. The Poly Haven maps are the official 1k JPGs the haven loader reads.",
+  "files": [
+    {
+      "url": "https://ambientcg.com/get?file=Metal001_2K-JPG.zip",
+      "sha256": "0b22df0a8fc4706b2e91f26d5ae6e475dd09bfaf74ad27d1883e5d074fef088e",
+      "unpack_to": "cctextures/Metal001",
+      "require": ["Metal001_2K-JPG_Color.jpg"]
+    },
+    {
+      "url": "https://ambientcg.com/get?file=Fabric004_2K-JPG.zip",
+      "sha256": "3ffdf20e88d13efd41bcee85ec3fa0fb9b2efee9a39849320c296e427a9234b2",
+      "unpack_to": "cctextures/Fabric004",
+      "require": ["Fabric004_2K-JPG_Color.jpg"]
+    },
+    {
+      "url": "https://ambientcg.com/get?file=Wood039_2K-JPG.zip",
+      "sha256": "49813751021e6710d4cfb945bb1cbaf4a38ea16db7dd2614aee43d61b19dc6a7",
+      "unpack_to": "cctextures/Wood039",
+      "require": ["Wood039_2K-JPG_Color.jpg"]
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/terrain_red_01/terrain_red_01_diff_1k.jpg",
+      "sha256": "f3f3fa6ebcddce22ece1fc8a343b469cbf67faefafac453ba53bce1fa28fc4b0",
+      "path": "haven/textures/terrain_red_01/terrain_red_01_diff_1k.jpg"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/terrain_red_01/terrain_red_01_ao_1k.jpg",
+      "sha256": "a7b0b649ca9e6ae319b5f7b7c077b491eee9e3ee34f912c95b4aebd003e050c6",
+      "path": "haven/textures/terrain_red_01/terrain_red_01_ao_1k.jpg"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/terrain_red_01/terrain_red_01_spec_1k.jpg",
+      "sha256": "f7bb971855a917eb38aab4a8a762403112cc80a8e54395bd0c8c26c992d7fd05",
+      "path": "haven/textures/terrain_red_01/terrain_red_01_spec_1k.jpg"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/terrain_red_01/terrain_red_01_rough_1k.jpg",
+      "sha256": "d28d3cb3cb1cff885eff978ebab96e2e887aad9c82294978554bc09ae00b2832",
+      "path": "haven/textures/terrain_red_01/terrain_red_01_rough_1k.jpg"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/terrain_red_01/terrain_red_01_nor_gl_1k.jpg",
+      "sha256": "97b57469b655d40c2e4c39b7c5f8deb9cbaee2af16c0ee19cd85f435f48f1da6",
+      "path": "haven/textures/terrain_red_01/terrain_red_01_nor_gl_1k.jpg"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/terrain_red_01/terrain_red_01_disp_1k.jpg",
+      "sha256": "8d913a37daebda3b79a10592cce1e1e8c4ced0565d10f9a734beff99e322585e",
+      "path": "haven/textures/terrain_red_01/terrain_red_01_disp_1k.jpg"
+    }
+  ]
+}
