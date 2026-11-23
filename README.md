@@ -25,27 +25,13 @@ A procedural Blender pipeline for photorealistic rendering.
 
 ## Installation
 
-### Via pip
-
-The simplest way to install blenderproc is via pip:
-
-```bash
-pip install blenderproc
-```
-
-### Via git
-
-Alternatively, if you need to make changes to blenderproc or you want to make use of the most recent version on the main-branch, clone the repository:
+Development, CI, and local installs use the hashed lock only (`requirements.lock`), with a 7-day release-age cooldown recorded in `uv.toml`. See [SECURITY.md](SECURITY.md). Do not bare-`pip install` unpinned packages.
 
 ```bash
 git clone https://github.com/DLR-RM/BlenderProc
-```
-
-To still make use of the blenderproc command and therefore use blenderproc anywhere on your system, make a local pip installation:
-
-```bash
 cd BlenderProc
-pip install -e .
+python -m pip install --require-hashes --no-build-isolation -r requirements.lock
+python -m pip install -e . --no-deps --no-build-isolation
 ```
 
 ## Usage

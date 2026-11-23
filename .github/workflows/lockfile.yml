@@ -1,0 +1,26 @@
+name: Lockfile
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install from the hashed lock
+        run: python -m pip install --require-hashes --no-build-isolation -r requirements.lock
+      - name: Install this project without unpinned dependencies
+        run: python -m pip install -e . --no-deps --no-build-isolation
+      - name: Fail if the lock is out of sync
+        run: |
+          cp requirements.lock /tmp/requirements.lock.orig
+          uv pip compile requirements.in --universal --generate-hashes --config-file uv.toml -o requirements.lock >/tmp/uv-compile.txt
+          diff -q /tmp/requirements.lock.orig requirements.lock
+      - name: Import locked dependencies
+        run: python -c "import yaml, requests, matplotlib, numpy, PIL, h5py, progressbar"
