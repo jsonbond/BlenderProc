@@ -13,6 +13,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install Blender 4.2.1 after the official checksum
+        run: |
+          set -euo pipefail
+          base="https://download.blender.org/release/Blender4.2"
+          dest="${RUNNER_TEMP}/blender"
+          mkdir -p "$dest"
+          # The per-archive .sha256 URL is not published. The release checksum file is.
+          curl -fsSL -A "Mozilla/5.0" -o "$dest/blender-4.2.1.sha256" "$base/blender-4.2.1.sha256"
+          curl -fL --retry 3 -A "Mozilla/5.0" -o "$dest/blender-4.2.1-linux-x64.tar.xz" "$base/blender-4.2.1-linux-x64.tar.xz"
+          grep 'blender-4.2.1-linux-x64.tar.xz$' "$dest/blender-4.2.1.sha256" | (cd "$dest" && sha256sum -c -)
+          tar -xJf "$dest/blender-4.2.1-linux-x64.tar.xz" -C "$dest"
+          "$dest/blender-4.2.1-linux-x64/blender" --version
       - name: Install from the hashed lock
         run: python -m pip install --require-hashes --no-build-isolation -r requirements.lock
       - name: Install this project without unpinned dependencies
