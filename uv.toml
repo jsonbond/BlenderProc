@@ -1,0 +1,3 @@
+# Release-age cooldown. Re-locks must keep this so a distribution published
+# in the last 7 days (including a hijacked release) cannot be selected.
+exclude-newer = "7 days"

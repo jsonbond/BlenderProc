@@ -1,0 +1,16 @@
+# Direct dependencies for development, CI, and local installs of this repo.
+# setup.py install_requires remains the packaging manifest and is not restructured.
+# Transitive pins and hashes are in requirements.lock.
+# Re-lock with the 7-day cooldown recorded in uv.toml:
+#   uv pip compile requirements.in --universal --generate-hashes --config-file uv.toml -o requirements.lock
+setuptools
+pyyaml
+requests
+matplotlib
+numpy
+Pillow
+h5py
+progressbar
+
+# Dev tool used to regenerate and check the lock. Not imported by BlenderProc.
+uv

@@ -10,4 +10,6 @@ bproc.init()
 loader = unittest.TestLoader()
 tests = loader.discover(os.path.dirname(__file__))
 testRunner = unittest.runner.TextTestRunner()
-testRunner.run(tests)
+result = testRunner.run(tests)
+if not result.wasSuccessful():
+    raise SystemExit(1)
